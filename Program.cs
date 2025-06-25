@@ -1,34 +1,56 @@
-﻿var cars = new[]
+﻿using System.Net.Http.Json;
+using Model;
+
+
+string line = "";
+int id = 0;
+
+do
 {
-    new { Brand = "Škoda", Model = "Octavia", Year = 2020, PricePerDay = 800, Available = true },
-    new { Brand = "Škoda", Model = "Fabia", Year = 2021, PricePerDay = 600, Available = true },
-    new { Brand = "VW", Model = "Golf", Year = 2019, PricePerDay = 900, Available = false },
-    new { Brand = "VW", Model = "Passat", Year = 2020, PricePerDay = 1200, Available = true },
-    new { Brand = "BMW", Model = "3 Series", Year = 2021, PricePerDay = 1500, Available = true },
-    new { Brand = "BMW", Model = "X3", Year = 2020, PricePerDay = 2000, Available = false }
-};
-
-// 1. Počet aut podle značky
-
-// 2. Dostupná auta seřazená podle ceny
-
-// 3. Průměrná cena podle značky
-
-
-var carsByBrand = cars.GroupBy(x => x.Brand);
-
-foreach (var carGroup in carsByBrand)
-{
-    var groupName = carGroup.Key;
-    var groupCount = carGroup.Count();
-    var averagePrice = carGroup.Average(x => x.PricePerDay);
-    var availableCars = carGroup.Where(x => x.Available).OrderBy(x => x.PricePerDay);
-
-    Console.WriteLine($"brand {groupName}, count: {groupCount}, aver: {averagePrice}");
-
-    foreach (var car in availableCars)
+    try
     {
-        Console.WriteLine($"available car: {car.Model}, price: {car.PricePerDay}");
+        Console.Write($"Enter personal ID (Q for end): ");
+        line = Console.ReadLine();
+
+        if (line != "Q" && line != "q")
+        {
+            id = int.Parse(line);
+
+            HttpClient client = new();
+            client.BaseAddress = new Uri("https://localhost:7047");
+
+            Person person = await client.GetFromJsonAsync<Person>($"/person/{id}");
+            if (person != null)
+            {
+                Console.WriteLine($"Person ID: {person.Id}, Name: {person.FirstName} {person.LastName}");
+                Console.WriteLine("");
+            }
+            else
+            {
+                Console.WriteLine("Person not found.");
+            }
+        }
+        else return;
     }
-    Console.WriteLine();
+    catch (FormatException)
+    {
+        Console.WriteLine("Invalid ID format. Please enter a valid integer.");
+        continue;
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"An error occurred: {ex.Message}");
+        return;
+    }
+
 }
+while (line != "Q");
+
+
+//var homeText = await client.GetStringAsync("/");
+//Console.WriteLine($"result: {homeText}");
+
+//var person = await client.GetFromJsonAsync<Person>("/person/10");
+//Console.WriteLine($"person id 10: {person.LastName}");
+
+//Console.ReadKey();
