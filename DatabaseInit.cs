@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,16 @@ namespace ConsoleApp1
     {
         public static void DbInitFromJson()
         {
-            var people = JsonDataset.LoadData(@"d:\Tmp\C_sharp_training\net2025\data2024.json");
+            List<Person> people;
+            string file = @"d:\Tmp\C_sharp_training\net2025\data2024.json";
+
+            if (!File.Exists(file))
+            {
+                //Console.WriteLine($"File {file} does not exist.");
+                throw new FileNotFoundException($"File {file} does not exist.");
+            }
+
+            people = JsonDataset.LoadData(file);
 
             Console.WriteLine($"loaded: {people.Count} people");
 
