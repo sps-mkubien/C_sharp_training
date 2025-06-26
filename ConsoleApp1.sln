@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinAPI", "..\MinAPI\MinAPI.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIControllers", "..\APIControllers\APIControllers.csproj", "{84689BA7-6D4E-4F8F-83D2-A7002FFBA26C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "..\WpfApp\WpfApp.csproj", "{EE4189AB-9FCA-4188-94F2-49A5ED45415F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{84689BA7-6D4E-4F8F-83D2-A7002FFBA26C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84689BA7-6D4E-4F8F-83D2-A7002FFBA26C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84689BA7-6D4E-4F8F-83D2-A7002FFBA26C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE4189AB-9FCA-4188-94F2-49A5ED45415F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE4189AB-9FCA-4188-94F2-49A5ED45415F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE4189AB-9FCA-4188-94F2-49A5ED45415F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE4189AB-9FCA-4188-94F2-49A5ED45415F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
